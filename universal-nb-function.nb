@@ -1,0 +1,39 @@
+ClearAll["Global`*"]
+(*in mm unit*)
+lambda = 1.064*10^-3;
+n = 1.82;
+(*element*)
+f[x_] := {{1, 0}, {-1/x, 1}}
+l[x_] := {{1, x}, {0, 1}}
+fth[x_, P_] := {{1, 0}, {-1/(x/P), 1}}
+yvo4 = fth[11000, 73];
+yag = fth[8000, P];
+(*parameter*)
+s[a_, d_] := a + d
+w[a_, b_, d_] := Sqrt[2*lambda*Abs[b]/(Pi*Sqrt[4 - (a + d)^2])]
+w0[a_, c_, d_] := Sqrt[Abs[lambda/(2*Pi*c)*Sqrt[4 - (a + d)^2]]]
+L[a_, c_, d_] := (a-d)/(2*c)
+
+(*abcd*)
+(*abcd*)
+(*abcd*)
+
+(*calculate*)
+s1 = s[a1, d1]; s2 = s[a2, d2];
+s3 = s[a3, d3]; s4 = s[a4, d4];
+w1 = w[a1, b1, d1]; w2 = w[a2, b2, d2];
+w3 = w[a3, b3, d3]; w4 = w[a4, b4, d4];
+w10 = w0[a1, c1, d1]; w20 = w0[a2, c2, d2];
+w30 = w0[a3, c3, d3]; w40 = w0[a4, c4, d4];
+L10 = L[a1, c1, d1]; L20 = L[a2, c2, d2];
+L30 = L[a3, c3, d3]; L40 = L[a4, c4, d4];
+(*plot*)
+rge = 350;
+Plot[{s1, s2, s3, s4}, {P, 0, rge}, PlotRange -> {All, {-2, 2}}, 
+ PlotLabel -> "a+d"]
+Plot[{w1, w2, w3, w4, 0.08}, {P, 0, rge}, 
+ PlotRange -> {All, {0, 0.5}}, PlotLabel -> "radius"]
+Plot[{w10, w20, w30, w40, 0.08}, {P, 0, rge}, 
+ PlotRange -> {All, {0, 0.5}}, PlotLabel -> "waist"]
+Plot[{L10, L20, L30, L40}, {P, 0, rge}, 
+ PlotRange -> {Full, Automatic}, PlotLabel -> "waist位置"]
